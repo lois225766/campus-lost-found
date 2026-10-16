@@ -1,0 +1,3 @@
+package com.campus.lostfound.model;
+import jakarta.persistence.*; import java.time.LocalDateTime;
+@Entity public class AuditLog { @Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id; private String action; private String details; private LocalDateTime at=LocalDateTime.now(); @ManyToOne private User actor; protected AuditLog(){} public AuditLog(String a,String d,User u){action=a;details=d;actor=u;} public Long getId(){return id;} public String getAction(){return action;} public String getDetails(){return details;} public LocalDateTime getAt(){return at;} public User getActor(){return actor;} }

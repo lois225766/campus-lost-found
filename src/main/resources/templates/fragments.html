@@ -1,0 +1,3 @@
+<!doctype html><html xmlns:th="http://www.thymeleaf.org"><body>
+<nav th:fragment="nav" class="nav"><a href="/" class="brand">Campus<span>Find</span></a><div class="navlinks"><a href="/dashboard">Dashboard</a><a href="/report">Report Item</a><a th:if="${session.user != null and session.user.role.name() == 'ADMIN'}" href="/admin">Admin</a><form action="/logout" method="post"><button class="linkbtn">Logout</button></form></div></nav>
+</body></html>

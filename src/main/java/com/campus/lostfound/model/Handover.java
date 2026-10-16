@@ -1,0 +1,7 @@
+package com.campus.lostfound.model;
+import jakarta.persistence.*; import java.time.LocalDateTime;
+@Entity public class Handover {
+ @Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id; @ManyToOne(optional=false) private Item item; @ManyToOne(optional=false) private User requester; @ManyToOne(optional=false) private User recipient; private String details; private String location; private LocalDateTime scheduledAt; private boolean requesterConfirmed; private boolean recipientConfirmed; private boolean adminClosed;
+ protected Handover(){} public Handover(Item i,User req,User rec,String d,String l,LocalDateTime t){item=i;requester=req;recipient=rec;details=d;location=l;scheduledAt=t;}
+ public boolean isBothConfirmed(){return requesterConfirmed&&recipientConfirmed;} public Long getId(){return id;} public Item getItem(){return item;} public User getRequester(){return requester;} public User getRecipient(){return recipient;} public String getDetails(){return details;} public String getLocation(){return location;} public LocalDateTime getScheduledAt(){return scheduledAt;} public boolean isRequesterConfirmed(){return requesterConfirmed;} public boolean isRecipientConfirmed(){return recipientConfirmed;} public boolean isAdminClosed(){return adminClosed;} public void setRequesterConfirmed(boolean v){requesterConfirmed=v;} public void setRecipientConfirmed(boolean v){recipientConfirmed=v;} public void setAdminClosed(boolean v){adminClosed=v;}
+}

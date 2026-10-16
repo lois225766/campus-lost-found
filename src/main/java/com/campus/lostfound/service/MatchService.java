@@ -1,0 +1,5 @@
+package com.campus.lostfound.service;
+import com.campus.lostfound.model.*; import org.springframework.stereotype.Service; import java.time.temporal.ChronoUnit; import java.util.*;
+@Service public class MatchService {
+ public List<Item> findMatches(Item source,List<Item> all){ List<Item> out=new ArrayList<>(); for(Item x:all){if(x.getId().equals(source.getId())||x.getReportType().equals(source.getReportType()))continue; int score=0; if(x.getCategory()==source.getCategory())score+=35; if(x.getLocation()!=null&&source.getLocation()!=null&&x.getLocation().equalsIgnoreCase(source.getLocation()))score+=25; if(x.getItemName()!=null&&source.getItemName()!=null){String[] a=source.getItemName().toLowerCase().split("\\s+");String b=x.getItemName().toLowerCase(); for(String w:a)if(w.length()>2&&b.contains(w))score+=15;} if(x.getEventDate()!=null&&source.getEventDate()!=null&&Math.abs(ChronoUnit.DAYS.between(x.getEventDate(),source.getEventDate()))<=3)score+=25; if(score>=55)out.add(x);} return out; }
+}
